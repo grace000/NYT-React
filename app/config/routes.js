@@ -22,7 +22,6 @@ var IndexRoute = router.IndexRoute;
 var Main = require("../components/Main");
 var Saved = require("../components/Saved");
 
-const Home = () => (<div><h1>Welcome home</h1></div>)
 
 var Routes = React.createClass ({
 
