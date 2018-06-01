@@ -24,24 +24,38 @@ app.use(express.static("./public"));
 
 // -------------------------------------------------
 
-// MongoDB configuration (Change this URL to your own DB)
-// mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
-
 // var db = mongoose.connection;
-mongoose.connect("mongodb://localhost/nycreact");
+// mongoose.connect("mongodb://localhost/nycreact");
 
-// Mongojs configuration
-var databaseUrl = "nycreact";
-var collections = ["articles"];
+// // Mongojs configuration
+// var databaseUrl = "nycreact";
+// var collections = ["articles"];
 
-var db = mongojs(databaseUrl, collections);
+// var db = mongojs(databaseUrl, collections);
 
-db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
-});
+// db.on("error", function(err) {
+//   console.log("Mongoose Error: ", err);
+// });
 
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
+// db.once("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
+
+mongoose.Promise = Promise;
+
+var dotenv = require('dotenv').config();
+
+var uristring =
+
+process.env.MONGODB_URI ||
+'mongodb://localhost/nycreact';
+
+mongoose.connection.openUri(uristring, function (err, res) {
+  if (err) {
+  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+  console.log ('Succeeded connected to: ' + uristring);
+  }
 });
 
 // -------------------------------------------------
