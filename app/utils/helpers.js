@@ -35,7 +35,36 @@ var helpers = {
             return results.data.response;
         })
 
+    },
+
+    getArticles: function(){
+        return axios.get("/api/saved")
+            .then(function(results) {
+            console.log("axios results", results);
+            return results;
+        });
+
+    },
+
+
+    saveArticles: function(title, date, url) {
+        var newArticle = { title: title, date: date, url: url };
+        return axios.post("/api/saved", newArticle)
+          .then(function(response) {
+            console.log("axios results", response.data._id);
+            return response.data._id;
+      });
+    },
+
+    deleteArticles: function(articleID){
+        return axios.delete("/api/saved/"+articleID)
+            .then(function(response){
+                console.log("article deleted");
+                console.log(articleID);
+                return axios.get("/api/saved");
+            })
     }
+
 }
 
 // Make the function available for access

@@ -3,6 +3,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var mongojs = require("mongojs");
 
 // Require Click schema
 var Article = require("./models/article");
@@ -24,8 +25,16 @@ app.use(express.static("./public"));
 // -------------------------------------------------
 
 // MongoDB configuration (Change this URL to your own DB)
-mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
-var db = mongoose.connection;
+// mongoose.connect("mongodb://admin:codingrocks@ds023674.mlab.com:23674/heroku_5ql1blnl");
+
+// var db = mongoose.connection;
+mongoose.connect("mongodb://localhost/nycreact");
+
+// Mongojs configuration
+var databaseUrl = "nycreact";
+var collections = ["articles"];
+
+var db = mongojs(databaseUrl, collections);
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
@@ -48,8 +57,7 @@ app.get("/api/saved", function(req, res) {
   
   Article.find({}).sort([
     ['date', 'descending']
-      ]).limit(5).exec(function(err, doc) {
-
+      ]).exec(function(err, doc) {
     if (err) {
       console.log(err);
     }
@@ -81,13 +89,18 @@ app.post("/api/saved", function(req, res) {
   console.log("You made a post request");
 });
 
-app.delete('/api/saved/:id', function(req, res){
 
-    Article.findByIdAndRemove(req.params.id, 
-    function(error, article){
-      res.send({id: article._id});
+app.delete('/api/saved/:id', function(req, res){
+    Article.deleteOne({_id: req.params.id}, 
+      function(error, article){
+        res.send({id: article._id});
     });
-  });
+    console.log("you made delete request")
+});
+
+app.get("*", function(req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 // -------------------------------------------------
 
