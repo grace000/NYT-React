@@ -1,6 +1,11 @@
 var React = require("react");
 var helpers = require("../../utils/helpers");
 
+var containerStyle = {
+    "fontFamily": "Roboto",
+    "boxShadow":"0 0 15px 0"
+}
+
 var Query = React.createClass({
 
     getInitialState: function(){
@@ -54,7 +59,7 @@ var Query = React.createClass({
                 <div className="row">
                     <div className="col-lg-12">
 
-                        <div className="panel panel-primary">
+                        <div className="panel panel-primary" style={containerStyle}>
                             <div className="panel-heading">
                                 <h1 className="panel-title"><strong><i className="fa fa-newspaper-o" aria-hidden="true"></i>  Search Parameters</strong></h1>
                             </div>

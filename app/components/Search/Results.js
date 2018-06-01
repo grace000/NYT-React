@@ -3,7 +3,10 @@ var helpers = require("../../utils/helpers");
 var Saved = require("../Saved");
 
 
-
+var containerStyle = {
+    "fontFamily": "Roboto",
+    "boxShadow":"0 0 15px 0"
+}
 
 var Results = React.createClass({
 
@@ -24,7 +27,7 @@ var Results = React.createClass({
                     <div className="row">
                         <div className="col-lg-12">
 
-                            <div className="panel panel-primary">
+                            <div className="panel panel-primary" style={containerStyle}>
                                 <div className="panel-heading">
                                     <h1 className="panel-title"><strong><i className="fa fa-list-alt"></i>  Search Results</strong></h1>
                                 </div>

@@ -9,6 +9,12 @@ var Router = require("react-router");
 var Route = Router.Route;
 var Router = Router.Router;
 
+
+var jumbotronStyle = {
+    "boxShadow":"0 0 15px 0",
+    "fontFamily": "Poppins",
+}
+
 var Main = React.createClass({
 
     getInitialState: function(){
@@ -72,8 +78,8 @@ var Main = React.createClass({
                         </nav>
 
 
-                        <div className="jumbotron">
-                            <h2 className="text-center">New York Times Search</h2>
+                        <div className="jumbotron" style={jumbotronStyle}>
+                            <h1 className="text-center">New York Times Search</h1>
                             <h3 className="text-center">Search for and save articles of interest</h3>
                         </div>
 

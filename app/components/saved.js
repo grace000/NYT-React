@@ -6,6 +6,16 @@ var helpers = require("../utils/helpers")
 var Link = require('react-router').Link;
 var Router = require("react-router");
 
+var containerStyle = {
+    "fontFamily": "Roboto",
+    "boxShadow":"0 0 15px 0"
+}
+
+var jumbotronStyle = {
+    "boxShadow":"0 0 15px 0",
+    "fontFamily": "Poppins",
+}
+
 var Saved = React.createClass({
 
   getInitialState: function() {
@@ -86,14 +96,14 @@ var Saved = React.createClass({
 		        </div>
 	      	</nav>
 
-	      	<div className="jumbotron">
-                <h2 className="text-center">New York Times Search</h2>
+	      	<div className="jumbotron" style={jumbotronStyle}>
+                <h1 className="text-center">New York Times Search</h1>
                 <h3 className="text-center">Search for and save articles of interest</h3>
             </div>
 
 	        <div className="row">
 	          <div className="col-lg-12">
-	            <div className="panel panel-primary">
+	            <div className="panel panel-primary" style={containerStyle}>
 	              <div className="panel-heading">
 	                <h1 className="panel-title">
 	                  <strong>
